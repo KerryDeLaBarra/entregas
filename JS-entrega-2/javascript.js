@@ -23,7 +23,7 @@ function opcionValida() {
 function agregarProducto() {
 	const nombre = prompt('Ingrese nombre del producto');
 	const precio = parseFloat(prompt('Ingrese precio del producto'));
-	const producto = new Producto(nombre, precio); //creamos el producto
+	const producto = new Producto(nombre.toUpperCase(), precio); //creamos el producto
 	productos.push(producto); //lo agregamos a la lista
 	alert('Producto agregado exitosamente');
 }
@@ -31,7 +31,7 @@ function buscarIndiceDeProducto(nombreDeProducto) {
 	let indice = -1;
 	for(let i = 0; i < productos.length; i++) {
     const producto = productos[i];
-		if(productos[i].nombre.toUpperCase() === nombreDeProducto.toUpperCase()){
+		if(productos[i].nombre === nombreDeProducto.toUpperCase()){
 		indice = i;
 		break;
 		}  
@@ -53,8 +53,11 @@ productos.splice(indiceProducto, 1); //elimino el producto
 	}
 
 function verProductos() {
-  alert("Los productos se mostrarán en la consola, salga con la opción 0 para continuar");
- console.log(productos);
+    let todosLosProductos = "" // aquí declaro que la variable funciona con string
+    for(let i = 0; i < productos.length; i++) {
+	todosLosProductos.concat(productos[i].nombre + ", ");
+    alert('Los productos ingresados son: ' + todosLosProductos);
+}
 }
 
 
