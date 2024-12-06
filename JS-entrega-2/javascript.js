@@ -53,11 +53,11 @@ productos.splice(indiceProducto, 1); //elimino el producto
 	}
 
 function verProductos() {
-    let todosLosProductos = "" // aquí declaro que la variable funciona con string
+    let todosLosProductos = ""; // aquí declaro que la variable funciona con string
     for(let i = 0; i < productos.length; i++) {
 	todosLosProductos.concat(productos[i].nombre + ", ");
-    alert('Los productos ingresados son: ' + todosLosProductos);
 }
+alert('Los productos ingresados son: ' + todosLosProductos);
 }
 
 
@@ -94,3 +94,150 @@ while(opcionValida(opcion)) {
 }
 	opcion = parseInt(prompt(opcionesMenu));
 }  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Clases
+class Producto {
+    constructor(nombre, precio) {
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+}
+
+// Funciones
+function opcionValida() {
+    while (opcion < 0 || opcion > 4 || isNaN(opcion)) {
+        alert('OPCIÓN INVÁLIDA');
+        opcion = parseInt(prompt(opcionesMenu));
+    }
+    if (opcion === 0) {
+        alert('GRACIAS POR UTILIZAR NUESTRO SISTEMA');
+        return false;
+    }
+    return true;
+}
+
+// Formatea un texto para que tenga la primera letra en mayúscula y el resto en minúsculas
+function formatearNombre(nombre) {
+    return nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase();
+}
+
+function agregarProducto() {
+    const nombre = prompt('Ingrese nombre del producto');
+    const precio = parseFloat(prompt('Ingrese precio del producto'));
+    if (!isNaN(precio)) {
+        const producto = new Producto(formatearNombre(nombre), precio);
+        productos.push(producto);
+        alert('Producto agregado exitosamente');
+    } else {
+        alert('Precio inválido. Inténtelo nuevamente.');
+    }
+}
+
+function eliminarProducto() {
+    const nombreProducto = formatearNombre(prompt('Ingrese el nombre del producto a eliminar'));
+    const productoEncontrado = productos.find(producto => producto.nombre === nombreProducto);
+
+    if (productoEncontrado) {
+        productos = productos.filter(producto => producto.nombre !== nombreProducto);
+        alert(`Producto "${nombreProducto}" eliminado exitosamente.`);
+    } else {
+        alert('EL PRODUCTO NO EXISTE');
+    }
+}
+
+function verProductos() {
+    if (productos.length > 0) {
+        const listaProductos = productos.map(producto => producto.nombre).join(', ');
+        alert('Los productos ingresados son: ' + listaProductos);
+    } else {
+        alert('No hay productos en el carrito.');
+    }
+}
+
+function calcularTotal() {
+    const total = productos.reduce((suma, producto) => suma + producto.precio, 0);
+    alert('El total es: $' + total.toFixed(2));
+}
+
+// Inicio del programa
+const opcionesMenu = '1- Agregar Producto, 2- Eliminar Producto, 3- Calcular Total, 4- Ver los productos, 0- Salir';
+let opcion = parseInt(prompt(opcionesMenu));
+let productos = [
+    new Producto(formatearNombre('Papa'), 30),
+    new Producto(formatearNombre('Tomate'), 50),
+    new Producto(formatearNombre('Lechuga'), 25),
+];
+
+while (opcionValida(opcion)) {
+    switch (opcion) {
+        case 1:
+            agregarProducto();
+            break;
+        case 2:
+            eliminarProducto();
+            break;
+        case 3:
+            calcularTotal();
+            break;
+        case 4:
+            verProductos();
+            break;
+    }
+    opcion = parseInt(prompt(opcionesMenu));
+}
