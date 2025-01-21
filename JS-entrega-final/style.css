@@ -1,0 +1,15 @@
+table {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse; /* Colapsar bordes para que no haya espacio doble */
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd; /* Borde de 1px gris claro */
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd; /* Color de fondo gris claro para filas pares */
+  }
